@@ -1,14 +1,140 @@
 package androidsamples.java.android2048;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.core.view.MotionEventCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    ConstraintLayout main2048;
+    SwipeListener swipeListener;
+    TextView btn[][];
+    int grid[][];
+
+    String TAG = "2048";
+
+    private MainViewModel vm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btn = new TextView[4][4];
+
+        btn[0][0] = findViewById(R.id.btn_1_1);
+        btn[0][1] = findViewById(R.id.btn_1_2);
+        btn[0][2] = findViewById(R.id.btn_1_3);
+        btn[0][3] = findViewById(R.id.btn_1_4);
+
+        btn[1][0] = findViewById(R.id.btn_2_1);
+        btn[1][1] = findViewById(R.id.btn_2_2);
+        btn[1][2] = findViewById(R.id.btn_2_3);
+        btn[1][3] = findViewById(R.id.btn_2_4);
+
+        btn[2][0] = findViewById(R.id.btn_3_1);
+        btn[2][1] = findViewById(R.id.btn_3_2);
+        btn[2][2] = findViewById(R.id.btn_3_3);
+        btn[2][3] = findViewById(R.id.btn_3_4);
+
+        btn[3][0] = findViewById(R.id.btn_4_1);
+        btn[3][1] = findViewById(R.id.btn_4_2);
+        btn[3][2] = findViewById(R.id.btn_4_3);
+        btn[3][3] = findViewById(R.id.btn_4_4);
+
+        main2048 = findViewById(R.id.main_view);
+        Log.d(TAG, "1");
+
+        vm = new ViewModelProvider(this).get(MainViewModel.class);
+        Log.d(TAG, "2");
+        updateUI();
+        Log.d(TAG, "3");
+
+        swipeListener = new SwipeListener(main2048);
+    }
+
+    private class SwipeListener implements View.OnTouchListener {
+        GestureDetector gestureDetector;
+
+        SwipeListener(View view) {
+            int threshold = 100;
+            int velocity_threshold = 100;
+
+            GestureDetector.SimpleOnGestureListener listener = new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onDown(MotionEvent e) {
+                    return true;
+                }
+
+                @Override
+                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                    float distX = e2.getX() - e1.getX();
+                    float distY = e2.getY() - e1.getY();
+
+                    try {
+                        if (Math.abs(distX) > Math.abs(distY)) {
+                            if (Math.abs(distX)>threshold && Math.abs(velocityX)>velocity_threshold) {
+                                if (distX>0) {
+                                    Log.d(TAG, "right");
+                                    vm.right();
+                                }
+                                else {
+                                    Log.d(TAG, "left");
+                                    vm.left();
+                                }
+                                updateUI();
+                                return true;
+                            }
+                        }
+                        else {
+                            if (Math.abs(distY)>threshold && Math.abs(velocityY)>velocity_threshold) {
+                                if (distY>0) {
+                                    Log.d(TAG, "down");
+                                    vm.down();
+                                }
+                                else {
+                                    Log.d(TAG, "up");
+                                    vm.up();
+                                }
+                                updateUI();
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return false;
+                }
+            };
+
+            gestureDetector = new GestureDetector(listener);
+            view.setOnTouchListener(this);
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return gestureDetector.onTouchEvent(event);
+        }
+    }
+
+    public void updateUI() {
+        grid = vm.getGrid();
+
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++)
+                btn[i][j].setText(Integer.toString(grid[i][j]));
     }
 }
