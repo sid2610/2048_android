@@ -14,7 +14,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_1_1"
         android:background="@color/grey"
@@ -24,6 +25,7 @@
         app:layout_constraintBottom_toTopOf="@id/btn_2_1"
         android:layout_marginHorizontal="2dp"
         android:layout_marginVertical="2dp"
+        android:padding="5dp"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintHorizontal_chainStyle="packed"/>
 
@@ -31,7 +33,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_1_2"
         android:background="@color/grey"
@@ -41,13 +44,15 @@
         app:layout_constraintBottom_toTopOf="@id/btn_2_2"
         android:layout_marginHorizontal="2dp"
         android:layout_marginVertical="2dp"
+        android:padding="5dp"
         app:layout_constraintVertical_chainStyle="packed"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_1_3"
         android:background="@color/grey"
@@ -57,13 +62,15 @@
         app:layout_constraintBottom_toTopOf="@id/btn_2_3"
         android:layout_marginHorizontal="2dp"
         android:layout_marginVertical="2dp"
+        android:padding="5dp"
         app:layout_constraintVertical_chainStyle="packed"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_1_4"
         android:background="@color/grey"
@@ -73,6 +80,7 @@
         app:layout_constraintBottom_toTopOf="@id/btn_2_4"
         android:layout_marginHorizontal="2dp"
         android:layout_marginVertical="2dp"
+        android:padding="5dp"
         app:layout_constraintVertical_chainStyle="packed"/>
 
     <!--row 2-->
@@ -81,7 +89,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_2_1"
         android:background="@color/grey"
@@ -91,13 +100,15 @@
         app:layout_constraintBottom_toTopOf="@id/btn_3_1"
         android:layout_marginHorizontal="2dp"
         android:layout_marginVertical="2dp"
+        android:padding="5dp"
         app:layout_constraintHorizontal_chainStyle="packed"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_2_2"
         android:background="@color/grey"
@@ -106,13 +117,15 @@
         app:layout_constraintTop_toBottomOf="@id/btn_1_2"
         app:layout_constraintBottom_toTopOf="@id/btn_3_2"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="2dp"/>
+        android:layout_marginVertical="2dp"
+        android:padding="5dp"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_2_3"
         android:background="@color/grey"
@@ -121,13 +134,15 @@
         app:layout_constraintTop_toBottomOf="@id/btn_1_3"
         app:layout_constraintBottom_toTopOf="@id/btn_3_3"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="2dp"/>
+        android:layout_marginVertical="2dp"
+        android:padding="5dp"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_2_4"
         android:background="@color/grey"
@@ -136,7 +151,8 @@
         app:layout_constraintTop_toBottomOf="@id/btn_1_4"
         app:layout_constraintBottom_toTopOf="@id/btn_3_4"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="2dp"/>
+        android:layout_marginVertical="2dp"
+        android:padding="5dp"/>
 
     <!--row 3-->
 
@@ -144,7 +160,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_3_1"
         android:background="@color/grey"
@@ -154,13 +171,15 @@
         app:layout_constraintBottom_toTopOf="@id/btn_4_1"
         android:layout_marginHorizontal="2dp"
         android:layout_marginVertical="2dp"
+        android:padding="5dp"
         app:layout_constraintHorizontal_chainStyle="packed"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_3_2"
         android:background="@color/grey"
@@ -169,13 +188,15 @@
         app:layout_constraintTop_toBottomOf="@id/btn_2_2"
         app:layout_constraintBottom_toTopOf="@id/btn_4_2"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="2dp"/>
+        android:layout_marginVertical="2dp"
+        android:padding="5dp"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_3_3"
         android:background="@color/grey"
@@ -184,13 +205,15 @@
         app:layout_constraintTop_toBottomOf="@id/btn_2_3"
         app:layout_constraintBottom_toTopOf="@id/btn_4_3"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="2dp"/>
+        android:layout_marginVertical="2dp"
+        android:padding="5dp"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_3_4"
         android:background="@color/grey"
@@ -199,7 +222,8 @@
         app:layout_constraintTop_toBottomOf="@id/btn_2_4"
         app:layout_constraintBottom_toTopOf="@id/btn_4_4"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="2dp"/>
+        android:layout_marginVertical="2dp"
+        android:padding="5dp"/>
 
     <!--row 4-->
 
@@ -207,7 +231,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_4_1"
         android:background="@color/grey"
@@ -217,13 +242,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginHorizontal="2dp"
         android:layout_marginVertical="2dp"
+        android:padding="5dp"
         app:layout_constraintHorizontal_chainStyle="packed"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_4_2"
         android:background="@color/grey"
@@ -232,13 +259,15 @@
         app:layout_constraintTop_toBottomOf="@id/btn_3_2"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="2dp"/>
+        android:layout_marginVertical="2dp"
+        android:padding="5dp"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_4_3"
         android:background="@color/grey"
@@ -247,13 +276,15 @@
         app:layout_constraintTop_toBottomOf="@id/btn_3_3"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="2dp"/>
+        android:layout_marginVertical="2dp"
+        android:padding="5dp"/>
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="0"
-        android:textSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:gravity="center"
         android:id="@+id/btn_4_4"
         android:background="@color/grey"
@@ -262,6 +293,19 @@
         app:layout_constraintTop_toBottomOf="@id/btn_3_4"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="2dp"/>
+        android:layout_marginVertical="2dp"
+        android:padding="5dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_undo"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:text="undo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_4_2"
+        android:layout_marginTop="30dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
