@@ -339,4 +339,25 @@
         android:layout_marginBottom="30dp"
         android:layout_marginHorizontal="10dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbl_score"
+        android:text="@string/score"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/btn_undo"
+        app:layout_constraintBottom_toTopOf="@id/btn_undo"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_score"
+        android:text="0"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/btn_reset"
+        app:layout_constraintTop_toTopOf="@id/lbl_score"
+        app:layout_constraintBottom_toBottomOf="@id/lbl_score"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

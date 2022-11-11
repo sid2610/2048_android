@@ -15,7 +15,7 @@ public class MainViewModel extends ViewModel {
     private int[][] grid;
     private int[][] prevGrid;
     private final int[][] tempGrid;
-    private int moves, zeroes, prevZeroes, tempZeroes, maxNum;
+    private int moves, zeroes, prevZeroes, tempZeroes, maxNum, score, prevScore, tempScore;
     private boolean undoable;
 
     public MainViewModel() {
@@ -55,6 +55,9 @@ public class MainViewModel extends ViewModel {
         else
             grid[y2][x2] = 2;
 
+        score = 0;
+        prevScore = 0;
+
         moves = 0;
         zeroes = 14;
         prevZeroes = 14;
@@ -65,6 +68,10 @@ public class MainViewModel extends ViewModel {
         moves += 1;
         tempZeroes = prevZeroes;
         prevZeroes = zeroes;
+
+        tempScore = prevScore;
+        prevScore = score;
+
         undoable = true;
 
         int[] col = new int[4];
@@ -99,6 +106,7 @@ public class MainViewModel extends ViewModel {
                 if (c_ind<num-1 && col[c_ind]==col[c_ind+1]) {
                     grid[y_ind][j] = 2 * col[c_ind];
                     maxNum = max(maxNum, grid[y_ind][j]);
+                    score += grid[y_ind][j];
                     c_ind += 2;
                 }
                 else {
@@ -141,6 +149,7 @@ public class MainViewModel extends ViewModel {
             if (moves>0) {
                 moves--;
                 prevZeroes = tempZeroes;
+                prevScore = tempScore;
                 for (int i = 0; i < 4; i++)
                     prevGrid[i] = tempGrid[i].clone();
             }
@@ -152,6 +161,10 @@ public class MainViewModel extends ViewModel {
         moves += 1;
         tempZeroes = prevZeroes;
         prevZeroes = zeroes;
+
+        tempScore = prevScore;
+        prevScore = score;
+
         undoable = true;
 
         int[] col = new int[4];
@@ -186,6 +199,7 @@ public class MainViewModel extends ViewModel {
                 if (c_ind<num-1 && col[c_ind]==col[c_ind+1]) {
                     grid[y_ind][j] = 2 * col[c_ind];
                     maxNum = max(maxNum, grid[y_ind][j]);
+                    score += grid[y_ind][j];
                     c_ind += 2;
                 }
                 else {
@@ -228,6 +242,7 @@ public class MainViewModel extends ViewModel {
             if (moves>0) {
                 moves--;
                 prevZeroes = tempZeroes;
+                prevScore = tempScore;
                 for (int i = 0; i < 4; i++)
                     prevGrid[i] = tempGrid[i].clone();
             }
@@ -239,6 +254,10 @@ public class MainViewModel extends ViewModel {
         moves += 1;
         tempZeroes = prevZeroes;
         prevZeroes = zeroes;
+
+        tempScore = prevScore;
+        prevScore = score;
+
         undoable = true;
 
         int[] row = new int[4];
@@ -273,6 +292,7 @@ public class MainViewModel extends ViewModel {
                 if (r_ind<num-1 && row[r_ind]==row[r_ind+1]) {
                     grid[i][x_ind] = 2 * row[r_ind];
                     maxNum = max(maxNum, grid[i][x_ind]);
+                    score += grid[i][x_ind];
                     r_ind += 2;
                 }
                 else {
@@ -315,6 +335,7 @@ public class MainViewModel extends ViewModel {
             if (moves>0) {
                 moves--;
                 prevZeroes = tempZeroes;
+                prevScore = tempScore;
                 for (int i = 0; i < 4; i++)
                     prevGrid[i] = tempGrid[i].clone();
             }
@@ -326,6 +347,10 @@ public class MainViewModel extends ViewModel {
         moves += 1;
         tempZeroes = prevZeroes;
         prevZeroes = zeroes;
+
+        tempScore = prevScore;
+        prevScore = score;
+
         undoable = true;
 
         int[] row = new int[4];
@@ -360,6 +385,7 @@ public class MainViewModel extends ViewModel {
                 if (r_ind<num-1 && row[r_ind]==row[r_ind+1]) {
                     grid[i][x_ind] = 2 * row[r_ind];
                     maxNum = max(maxNum, grid[i][x_ind]);
+                    score += grid[i][x_ind];
                     r_ind += 2;
                 }
                 else {
@@ -402,6 +428,7 @@ public class MainViewModel extends ViewModel {
             if (moves>0) {
                 moves--;
                 prevZeroes = tempZeroes;
+                prevScore = tempScore;
                 for (int i = 0; i < 4; i++)
                     prevGrid[i] = tempGrid[i].clone();
             }
@@ -413,6 +440,7 @@ public class MainViewModel extends ViewModel {
         if (moves>0 && undoable) {
             moves--;
             zeroes = prevZeroes;
+            score = prevScore;
             undoable = false;
 
             for (int i=0; i<4; i++)
@@ -452,6 +480,9 @@ public class MainViewModel extends ViewModel {
         else
             grid[y2][x2] = 2;
 
+        score = 0;
+        prevScore = 0;
+
         moves = 0;
         zeroes = 14;
         prevZeroes = 14;
@@ -464,5 +495,9 @@ public class MainViewModel extends ViewModel {
 
     public int getMax() {
         return maxNum;
+    }
+
+    public int getScore() {
+        return score;
     }
 }

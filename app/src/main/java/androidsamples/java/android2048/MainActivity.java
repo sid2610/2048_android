@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout main2048;
     SwipeListener swipeListener;
     TextView[][] btn;
+    TextView txtScore;
     Button btnUndo, btnReset;
     int[][] grid;
 
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
         btnUndo = findViewById(R.id.btn_undo);
         btnReset = findViewById(R.id.btn_reset);
+
+        txtScore = findViewById(R.id.txt_score);
 
         main2048 = findViewById(R.id.main_view);
         Log.d(TAG, "1");
@@ -204,6 +207,8 @@ public class MainActivity extends AppCompatActivity {
                     btn[i][j].setText("");
                 else
                     btn[i][j].setText(Integer.toString(grid[i][j]));
+
+                txtScore.setText(Integer.toString(vm.getScore()));
             }
     }
 }
