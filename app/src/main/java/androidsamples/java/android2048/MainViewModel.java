@@ -12,7 +12,9 @@ public class MainViewModel extends ViewModel {
     private static final String TAG = "vm";
 
     private Random mRng;
-    private int[][] grid, prevGrid, tempGrid;
+    private int[][] grid;
+    private int[][] prevGrid;
+    private final int[][] tempGrid;
     private int moves, zeroes, prevZeroes, tempZeroes, maxNum;
     private boolean undoable;
 
@@ -39,14 +41,14 @@ public class MainViewModel extends ViewModel {
 
         maxNum = 2;
 
-        if (mRng.nextInt(4)==0) {
+        if (mRng.nextInt(10)==0) {
             grid[y1][x1] = 4;
             maxNum = 4;
         }
         else
             grid[y1][x1] = 2;
 
-        if (mRng.nextInt(4)==0) {
+        if (mRng.nextInt(10)==0) {
             grid[y2][x2] = 4;
             maxNum = 4;
         }
@@ -73,12 +75,10 @@ public class MainViewModel extends ViewModel {
         Log.d(TAG, "previous zeroes: " + prevZeroes);
 
         for (int i=0; i<4; i++)
-            for (int j=0; j<4; j++)
-                tempGrid[i][j] = prevGrid[i][j];
+            tempGrid[i] = prevGrid[i].clone();
 
         for (int i=0; i<4; i++)
-            for (int j=0; j<4; j++)
-                prevGrid[i][j] = grid[i][j];
+            prevGrid[i] = grid[i].clone();
 
         for (int j=0; j<4; j++) {
             num = 0;
@@ -130,7 +130,7 @@ public class MainViewModel extends ViewModel {
             while (vcnt[v]==0)
                 v = mRng.nextInt(4);
 
-            if (mRng.nextInt(4)==0)
+            if (mRng.nextInt(10)==0)
                 grid[3-mRng.nextInt(vcnt[v])][v] = 4;
             else
                 grid[3-mRng.nextInt(vcnt[v])][v] = 2;
@@ -142,8 +142,7 @@ public class MainViewModel extends ViewModel {
                 moves--;
                 prevZeroes = tempZeroes;
                 for (int i = 0; i < 4; i++)
-                    for (int j = 0; j < 4; j++)
-                        prevGrid[i][j] = tempGrid[i][j];
+                    prevGrid[i] = tempGrid[i].clone();
             }
         }
         Log.d(TAG, "zeroes: " + zeroes);
@@ -163,12 +162,10 @@ public class MainViewModel extends ViewModel {
         Log.d(TAG, "previous zeroes: " + prevZeroes);
 
         for (int i=0; i<4; i++)
-            for (int j=0; j<4; j++)
-                tempGrid[i][j] = prevGrid[i][j];
+            tempGrid[i] = prevGrid[i].clone();
 
         for (int i=0; i<4; i++)
-            for (int j=0; j<4; j++)
-                prevGrid[i][j] = grid[i][j];
+            prevGrid[i] = grid[i].clone();
 
         for (int j=0; j<4; j++) {
             num = 0;
@@ -220,7 +217,7 @@ public class MainViewModel extends ViewModel {
             while (vcnt[v]==0)
                 v = mRng.nextInt(4);
 
-            if (mRng.nextInt(4)==0)
+            if (mRng.nextInt(10)==0)
                 grid[mRng.nextInt(vcnt[v])][v] = 4;
             else
                 grid[mRng.nextInt(vcnt[v])][v] = 2;
@@ -232,8 +229,7 @@ public class MainViewModel extends ViewModel {
                 moves--;
                 prevZeroes = tempZeroes;
                 for (int i = 0; i < 4; i++)
-                    for (int j = 0; j < 4; j++)
-                        prevGrid[i][j] = tempGrid[i][j];
+                    prevGrid[i] = tempGrid[i].clone();
             }
         }
         Log.d(TAG, "zeroes: " + zeroes);
@@ -253,12 +249,10 @@ public class MainViewModel extends ViewModel {
         Log.d(TAG, "previous zeroes: " + prevZeroes);
 
         for (int i=0; i<4; i++)
-            for (int j=0; j<4; j++)
-                tempGrid[i][j] = prevGrid[i][j];
+            tempGrid[i] = prevGrid[i].clone();
 
         for (int i=0; i<4; i++)
-            for (int j=0; j<4; j++)
-                prevGrid[i][j] = grid[i][j];
+            prevGrid[i] = grid[i].clone();
 
         for (int i=0; i<4; i++) {
             num = 0;
@@ -310,7 +304,7 @@ public class MainViewModel extends ViewModel {
             while (vcnt[v]==0)
                 v = mRng.nextInt(4);
 
-            if (mRng.nextInt(4)==0)
+            if (mRng.nextInt(10)==0)
                 grid[v][3-mRng.nextInt(vcnt[v])] = 4;
             else
                 grid[v][3-mRng.nextInt(vcnt[v])] = 2;
@@ -322,8 +316,7 @@ public class MainViewModel extends ViewModel {
                 moves--;
                 prevZeroes = tempZeroes;
                 for (int i = 0; i < 4; i++)
-                    for (int j = 0; j < 4; j++)
-                        prevGrid[i][j] = tempGrid[i][j];
+                    prevGrid[i] = tempGrid[i].clone();
             }
         }
         Log.d(TAG, "zeroes: " + zeroes);
@@ -343,12 +336,10 @@ public class MainViewModel extends ViewModel {
         Log.d(TAG, "previous zeroes: " + prevZeroes);
 
         for (int i=0; i<4; i++)
-            for (int j=0; j<4; j++)
-                tempGrid[i][j] = prevGrid[i][j];
+            tempGrid[i] = prevGrid[i].clone();
 
         for (int i=0; i<4; i++)
-            for (int j=0; j<4; j++)
-                prevGrid[i][j] = grid[i][j];
+            prevGrid[i] = grid[i].clone();
 
         for (int i=0; i<4; i++) {
             num = 0;
@@ -400,7 +391,7 @@ public class MainViewModel extends ViewModel {
             while (vcnt[v]==0)
                 v = mRng.nextInt(4);
 
-            if (mRng.nextInt(4)==0)
+            if (mRng.nextInt(10)==0)
                 grid[v][mRng.nextInt(vcnt[v])] = 4;
             else
                 grid[v][mRng.nextInt(vcnt[v])] = 2;
@@ -412,8 +403,7 @@ public class MainViewModel extends ViewModel {
                 moves--;
                 prevZeroes = tempZeroes;
                 for (int i = 0; i < 4; i++)
-                    for (int j = 0; j < 4; j++)
-                        prevGrid[i][j] = tempGrid[i][j];
+                    prevGrid[i] = tempGrid[i].clone();
             }
         }
         Log.d(TAG, "zeroes: " + zeroes);
@@ -452,12 +442,12 @@ public class MainViewModel extends ViewModel {
             y2 = mRng.nextInt(4);
         }
 
-        if (mRng.nextInt(4)==0)
+        if (mRng.nextInt(10)==0)
             grid[y1][x1] = 4;
         else
             grid[y1][x1] = 2;
 
-        if (mRng.nextInt(4)==0)
+        if (mRng.nextInt(10)==0)
             grid[y2][x2] = 4;
         else
             grid[y2][x2] = 2;
