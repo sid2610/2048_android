@@ -168,6 +168,38 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i=0; i<4; i++)
             for (int j=0; j<4; j++) {
+                switch (grid[i][j]) {
+                    case 0: btn[i][j].setBackgroundColor(getResources().getColor(R.color.grey));
+                        break;
+                    case 2: btn[i][j].setBackgroundColor(getResources().getColor(R.color.dark_grey));
+                        break;
+                    case 4: btn[i][j].setBackgroundColor(getResources().getColor(R.color.rr));
+                        break;
+                    case 8: btn[i][j].setBackgroundColor(getResources().getColor(R.color.rg));
+                        break;
+                    case 16: btn[i][j].setBackgroundColor(getResources().getColor(R.color.gr));
+                        break;
+                    case 32: btn[i][j].setBackgroundColor(getResources().getColor(R.color.gg));
+                        break;
+                    case 64: btn[i][j].setBackgroundColor(getResources().getColor(R.color.gb));
+                        break;
+                    case 128: btn[i][j].setBackgroundColor(getResources().getColor(R.color.bg));
+                        break;
+                    case 256: btn[i][j].setBackgroundColor(getResources().getColor(R.color.bb));
+                        break;
+                    case 512: btn[i][j].setBackgroundColor(getResources().getColor(R.color.br));
+                        break;
+                    case 1024: btn[i][j].setBackgroundColor(getResources().getColor(R.color.rb));
+                        break;
+                    default: btn[i][j].setBackgroundColor(getResources().getColor(R.color.white));
+                        break;
+                }
+
+                if (grid[i][j]>1024)
+                    btn[i][j].setTextColor(getResources().getColor(R.color.black));
+                else
+                    btn[i][j].setTextColor(getResources().getColor(R.color.white));
+
                 if (grid[i][j]==0)
                     btn[i][j].setText("");
                 else

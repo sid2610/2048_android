@@ -9,4 +9,15 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="grey">#FF888888</color>
+    <color name="rr">#FF990000</color>
+    <color name="rg">#FF663300</color>
+    <color name="gr">#FF336600</color>
+    <color name="gg">#FF009900</color>
+    <color name="gb">#FF006633</color>
+    <color name="bg">#FF003366</color>
+    <color name="bb">#FF000099</color>
+    <color name="br">#FF330066</color>
+    <color name="rb">#FF660033</color>
+
+    <color name="dark_grey">#FF444444</color>
 </resources>
