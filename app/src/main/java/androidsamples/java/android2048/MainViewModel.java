@@ -94,21 +94,22 @@ public class MainViewModel extends ViewModel {
                 zeroes--;
             }
 
+            if (same) {
+                for (int i=0; i<4; i++) {
+                    if (prevGrid[i][j]!=grid[i][j]) {
+                        same = false;
+                        break;
+                    }
+                }
+
+            }
+
             vcnt[j] = 4 - y_ind;
             Log.d(TAG, "column " + j + ": " + vcnt[j]);
         }
         Log.d(TAG, "zeroes: " + zeroes);
 
-        /*
-        for (int i=0; i<4; i++) {
-            for (int j=0; j<4; j++) {
-                if (prevGrid[i][j] != grid[i][j])
-                    Log.d(TAG, "not same " + i + ", " + j);
-            }
-        }
-        */
-
-        if (zeroes>0) {
+        if (zeroes>0 && !same) {
             v = mRng.nextInt(4);
 
             while (vcnt[v]==0)
@@ -131,6 +132,7 @@ public class MainViewModel extends ViewModel {
 
         int[] col = new int[4];
         int[] vcnt = new int[4];
+        boolean same = true;
         int num, y_ind, c_ind, v;
 
         Log.d(TAG, "previous zeroes: " + prevZeroes);
@@ -167,12 +169,22 @@ public class MainViewModel extends ViewModel {
                 zeroes--;
             }
 
+            if (same) {
+                for (int i=0; i<4; i++) {
+                    if (prevGrid[i][j]!=grid[i][j]) {
+                        same = false;
+                        break;
+                    }
+                }
+
+            }
+
             vcnt[j] = y_ind + 1;
             Log.d(TAG, "column " + j + ": " + vcnt[j]);
         }
         Log.d(TAG, "zeroes: " + zeroes);
 
-        if (zeroes>0) {
+        if (zeroes>0  && !same) {
             v = mRng.nextInt(4);
 
             while (vcnt[v]==0)
@@ -195,6 +207,7 @@ public class MainViewModel extends ViewModel {
 
         int[] row = new int[4];
         int[] vcnt = new int[4];
+        boolean same = true;
         int num, x_ind, r_ind, v;
 
         Log.d(TAG, "previous zeroes: " + prevZeroes);
@@ -231,12 +244,22 @@ public class MainViewModel extends ViewModel {
                 zeroes--;
             }
 
+            if (same) {
+                for (int j=0; j<4; j++) {
+                    if (prevGrid[i][j]!=grid[i][j]) {
+                        same = false;
+                        break;
+                    }
+                }
+
+            }
+
             vcnt[i] = 4 - x_ind;
             Log.d(TAG, "row " + i + ": " + vcnt[i]);
         }
         Log.d(TAG, "zeroes: " + zeroes);
 
-        if (zeroes>0) {
+        if (zeroes>0  && !same) {
             v = mRng.nextInt(4);
 
             while (vcnt[v]==0)
@@ -259,6 +282,7 @@ public class MainViewModel extends ViewModel {
 
         int[] row = new int[4];
         int[] vcnt = new int[4];
+        boolean same = true;
         int num, x_ind, r_ind, v;
 
         Log.d(TAG, "previous zeroes: " + prevZeroes);
@@ -295,12 +319,22 @@ public class MainViewModel extends ViewModel {
                 zeroes--;
             }
 
+            if (same) {
+                for (int j=0; j<4; j++) {
+                    if (prevGrid[i][j]!=grid[i][j]) {
+                        same = false;
+                        break;
+                    }
+                }
+
+            }
+
             vcnt[i] = x_ind + 1;
             Log.d(TAG, "row " + i + ": " + vcnt[i]);
         }
         Log.d(TAG, "zeroes: " + zeroes);
 
-        if (zeroes>0) {
+        if (zeroes>0  && !same) {
             v = mRng.nextInt(4);
 
             while (vcnt[v]==0)
@@ -328,6 +362,41 @@ public class MainViewModel extends ViewModel {
                     Log.d(TAG, "val " + i + ", " + j + " = " + grid[i][j]);
                 }
         }
+    }
+
+    public void reset() {
+        grid = new int[4][4];
+        prevGrid = new int[4][4];
+
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++)
+                grid[i][j] = 0;
+
+        mRng = new Random();
+        int x1 = mRng.nextInt(4);
+        int y1 = mRng.nextInt(4);
+        int x2 = mRng.nextInt(4);
+        int y2 = mRng.nextInt(4);
+
+        while (x1==x2 && y1==y2) {
+            x2 = mRng.nextInt(4);
+            y2 = mRng.nextInt(4);
+        }
+
+        if (mRng.nextInt(4)==0)
+            grid[y1][x1] = 4;
+        else
+            grid[y1][x1] = 2;
+
+        if (mRng.nextInt(4)==0)
+            grid[y2][x2] = 4;
+        else
+            grid[y2][x2] = 2;
+
+        moves = 0;
+        zeroes = 14;
+        prevZeroes = 14;
+        undoable = false;
     }
 
     public int[][] getGrid() {

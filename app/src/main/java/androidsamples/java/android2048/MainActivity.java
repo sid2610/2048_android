@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout main2048;
     SwipeListener swipeListener;
     TextView btn[][];
-    Button btnUndo;
+    Button btnUndo, btnReset;
     int grid[][];
 
     String TAG = "2048";
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btn[3][3] = findViewById(R.id.btn_4_4);
 
         btnUndo = findViewById(R.id.btn_undo);
+        btnReset = findViewById(R.id.btn_reset);
 
         main2048 = findViewById(R.id.main_view);
         Log.d(TAG, "1");
@@ -68,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
 
         btnUndo.setOnClickListener(v -> {
             vm.undo();
+            updateUI();
+        });
+
+        btnReset.setOnClickListener(v -> {
+            vm.reset();
             updateUI();
         });
     }
