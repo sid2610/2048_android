@@ -1,10 +1,8 @@
 package androidsamples.java.android2048;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.view.GestureDetectorCompat;
-import androidx.core.view.MotionEventCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
@@ -21,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
     ConstraintLayout main2048;
     SwipeListener swipeListener;
-    TextView btn[][];
+    TextView[][] btn;
     Button btnUndo, btnReset;
-    int grid[][];
+    int[][] grid;
 
     Context context;
     Toast toast;
@@ -37,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         btn = new TextView[4][4];
 
