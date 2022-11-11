@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">android2048</string>
+    <string name="success">You win!</string>
 </resources>

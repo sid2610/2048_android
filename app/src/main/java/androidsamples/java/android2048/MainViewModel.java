@@ -1,5 +1,7 @@
 package androidsamples.java.android2048;
 
+import static java.lang.Math.max;
+
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
@@ -10,14 +12,15 @@ public class MainViewModel extends ViewModel {
     private static final String TAG = "vm";
 
     private Random mRng;
-    private int[][] grid, prevGrid;
-    private int moves, zeroes, prevZeroes;
+    private int[][] grid, prevGrid, tempGrid;
+    private int moves, zeroes, prevZeroes, tempZeroes, maxNum;
     private boolean undoable;
 
     public MainViewModel() {
         Log.d(TAG, "2");
         grid = new int[4][4];
         prevGrid = new int[4][4];
+        tempGrid = new int[4][4];
 
         for (int i=0; i<4; i++)
             for (int j=0; j<4; j++)
@@ -34,13 +37,19 @@ public class MainViewModel extends ViewModel {
             y2 = mRng.nextInt(4);
         }
 
-        if (mRng.nextInt(4)==0)
+        maxNum = 2;
+
+        if (mRng.nextInt(4)==0) {
             grid[y1][x1] = 4;
+            maxNum = 4;
+        }
         else
             grid[y1][x1] = 2;
 
-        if (mRng.nextInt(4)==0)
+        if (mRng.nextInt(4)==0) {
             grid[y2][x2] = 4;
+            maxNum = 4;
+        }
         else
             grid[y2][x2] = 2;
 
@@ -52,6 +61,7 @@ public class MainViewModel extends ViewModel {
 
     public void up() {
         moves += 1;
+        tempZeroes = prevZeroes;
         prevZeroes = zeroes;
         undoable = true;
 
@@ -61,6 +71,10 @@ public class MainViewModel extends ViewModel {
         int num, y_ind, c_ind, v;
 
         Log.d(TAG, "previous zeroes: " + prevZeroes);
+
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++)
+                tempGrid[i][j] = prevGrid[i][j];
 
         for (int i=0; i<4; i++)
             for (int j=0; j<4; j++)
@@ -84,6 +98,7 @@ public class MainViewModel extends ViewModel {
             while (c_ind<num) {
                 if (c_ind<num-1 && col[c_ind]==col[c_ind+1]) {
                     grid[y_ind][j] = 2 * col[c_ind];
+                    maxNum = max(maxNum, grid[y_ind][j]);
                     c_ind += 2;
                 }
                 else {
@@ -122,11 +137,21 @@ public class MainViewModel extends ViewModel {
 
             zeroes--;
         }
+        else {
+            if (moves>0) {
+                moves--;
+                prevZeroes = tempZeroes;
+                for (int i = 0; i < 4; i++)
+                    for (int j = 0; j < 4; j++)
+                        prevGrid[i][j] = tempGrid[i][j];
+            }
+        }
         Log.d(TAG, "zeroes: " + zeroes);
     }
 
     public void down() {
         moves += 1;
+        tempZeroes = prevZeroes;
         prevZeroes = zeroes;
         undoable = true;
 
@@ -136,6 +161,10 @@ public class MainViewModel extends ViewModel {
         int num, y_ind, c_ind, v;
 
         Log.d(TAG, "previous zeroes: " + prevZeroes);
+
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++)
+                tempGrid[i][j] = prevGrid[i][j];
 
         for (int i=0; i<4; i++)
             for (int j=0; j<4; j++)
@@ -159,6 +188,7 @@ public class MainViewModel extends ViewModel {
             while (c_ind<num) {
                 if (c_ind<num-1 && col[c_ind]==col[c_ind+1]) {
                     grid[y_ind][j] = 2 * col[c_ind];
+                    maxNum = max(maxNum, grid[y_ind][j]);
                     c_ind += 2;
                 }
                 else {
@@ -197,11 +227,21 @@ public class MainViewModel extends ViewModel {
 
             zeroes--;
         }
+        else {
+            if (moves>0) {
+                moves--;
+                prevZeroes = tempZeroes;
+                for (int i = 0; i < 4; i++)
+                    for (int j = 0; j < 4; j++)
+                        prevGrid[i][j] = tempGrid[i][j];
+            }
+        }
         Log.d(TAG, "zeroes: " + zeroes);
     }
 
     public void left() {
         moves += 1;
+        tempZeroes = prevZeroes;
         prevZeroes = zeroes;
         undoable = true;
 
@@ -211,6 +251,10 @@ public class MainViewModel extends ViewModel {
         int num, x_ind, r_ind, v;
 
         Log.d(TAG, "previous zeroes: " + prevZeroes);
+
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++)
+                tempGrid[i][j] = prevGrid[i][j];
 
         for (int i=0; i<4; i++)
             for (int j=0; j<4; j++)
@@ -234,6 +278,7 @@ public class MainViewModel extends ViewModel {
             while (r_ind<num) {
                 if (r_ind<num-1 && row[r_ind]==row[r_ind+1]) {
                     grid[i][x_ind] = 2 * row[r_ind];
+                    maxNum = max(maxNum, grid[i][x_ind]);
                     r_ind += 2;
                 }
                 else {
@@ -272,11 +317,21 @@ public class MainViewModel extends ViewModel {
 
             zeroes--;
         }
+        else {
+            if (moves>0) {
+                moves--;
+                prevZeroes = tempZeroes;
+                for (int i = 0; i < 4; i++)
+                    for (int j = 0; j < 4; j++)
+                        prevGrid[i][j] = tempGrid[i][j];
+            }
+        }
         Log.d(TAG, "zeroes: " + zeroes);
     }
 
     public void right() {
         moves += 1;
+        tempZeroes = prevZeroes;
         prevZeroes = zeroes;
         undoable = true;
 
@@ -286,6 +341,10 @@ public class MainViewModel extends ViewModel {
         int num, x_ind, r_ind, v;
 
         Log.d(TAG, "previous zeroes: " + prevZeroes);
+
+        for (int i=0; i<4; i++)
+            for (int j=0; j<4; j++)
+                tempGrid[i][j] = prevGrid[i][j];
 
         for (int i=0; i<4; i++)
             for (int j=0; j<4; j++)
@@ -309,6 +368,7 @@ public class MainViewModel extends ViewModel {
             while (r_ind<num) {
                 if (r_ind<num-1 && row[r_ind]==row[r_ind+1]) {
                     grid[i][x_ind] = 2 * row[r_ind];
+                    maxNum = max(maxNum, grid[i][x_ind]);
                     r_ind += 2;
                 }
                 else {
@@ -346,6 +406,15 @@ public class MainViewModel extends ViewModel {
                 grid[v][mRng.nextInt(vcnt[v])] = 2;
 
             zeroes--;
+        }
+        else {
+            if (moves>0) {
+                moves--;
+                prevZeroes = tempZeroes;
+                for (int i = 0; i < 4; i++)
+                    for (int j = 0; j < 4; j++)
+                        prevGrid[i][j] = tempGrid[i][j];
+            }
         }
         Log.d(TAG, "zeroes: " + zeroes);
     }
@@ -401,5 +470,9 @@ public class MainViewModel extends ViewModel {
 
     public int[][] getGrid() {
         return grid;
+    }
+
+    public int getMax() {
+        return maxNum;
     }
 }

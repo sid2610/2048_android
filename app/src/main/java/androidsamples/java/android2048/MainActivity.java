@@ -7,6 +7,7 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.MotionEventCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -14,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     TextView btn[][];
     Button btnUndo, btnReset;
     int grid[][];
+
+    Context context;
+    Toast toast;
+    boolean win;
 
     String TAG = "2048";
 
@@ -61,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "1");
 
         vm = new ViewModelProvider(this).get(MainViewModel.class);
+
+        context = getApplicationContext();
+        toast = Toast.makeText(context, getResources().getText(R.string.success), Toast.LENGTH_SHORT);
+        win = false;
+
         Log.d(TAG, "2");
         updateUI();
         Log.d(TAG, "3");
@@ -108,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
                                     vm.left();
                                 }
                                 updateUI();
+                                if (!win && vm.getMax()==2048) {
+                                    win = true;
+                                    toast.show();
+                                }
                                 return true;
                             }
                         }
@@ -122,6 +137,10 @@ public class MainActivity extends AppCompatActivity {
                                     vm.up();
                                 }
                                 updateUI();
+                                if (!win && vm.getMax()==2048) {
+                                    win = true;
+                                    toast.show();
+                                }
                                 return true;
                             }
                         }
